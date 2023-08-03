@@ -4,13 +4,7 @@ import (
 	"net/http"
 )
 
-func Main() {
-	// Defining the route
-	http.HandleFunc("/", mainHandler)
-	http.ListenAndServe(":8080", nil)
-}
-
-func mainHandler(w http.ResponseWriter, r *http.Request) {
+func main(w http.ResponseWriter, r *http.Request) {
 	html := `
 	<!DOCTYPE html>
 	<html>
@@ -67,4 +61,8 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 	`
 	w.Header().Set("Content-Type", "text/html")
 	w.Write([]byte(html))
+}
+func Handler() {
+	http.HandleFunc("/", main)
+	http.ListenAndServe(":8080", nil)
 }
