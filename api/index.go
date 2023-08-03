@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -59,8 +60,7 @@ func main(w http.ResponseWriter, r *http.Request) {
 	</body>
 	</html>
 	`
-	w.Header().Set("Content-Type", "text/html")
-	w.Write([]byte(html))
+	fmt.Fprint(w, html)
 }
 func Handler() {
 	http.HandleFunc("/", main)
