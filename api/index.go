@@ -6,11 +6,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-
-		w.Header().Set("Content-Type", "text/html")
-
-		tpl := `<!DOCTYPE html>
+	tmp := template.New("").Parse( `<!DOCTYPE html>
 		<html>
 		<head>
 			<title>Extreme Front in Go</title>
@@ -62,15 +58,8 @@ func main() {
 	</footer>
 		</body>
 		</html>
-        `
-		t := template.Must(template.New("index").Parse(tpl))
-
-		err := t.Execute(w, nil)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-	})
+        `)
+		tmp.Execute()
 
 	http.ListenAndServe(":8080", nil)
 }
