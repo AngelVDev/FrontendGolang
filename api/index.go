@@ -2,7 +2,6 @@ package main
 
 import (
 	"html/template"
-	"net/http"
 )
 
 func main() {
@@ -60,6 +59,4 @@ func main() {
 		</html>
         `)
 		tmp.Execute()
-
-	http.ListenAndServe(":8080", nil)
 }
